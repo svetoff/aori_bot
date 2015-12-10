@@ -1,0 +1,22 @@
+aori:
+  account_1:
+    login: user@mail.ru
+    password: pass
+
+  account_2:
+    login: user@mail.ru
+    password: pass
+
+  account_3:
+    login: user@mail.ru
+    password: pass
+
+  account_4:
+    login: user@mail.ru
+    password: pass
+
+  account_5:
+    login: user@mail.ru
+    password: pass
+
+path_file: 
