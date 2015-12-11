@@ -43,7 +43,7 @@ class ClassSpider(object):
         """Метод получения баланса аккаунта"""
         self.driver.get_cookies()
         self.driver.get(self.base_url + 'app/#/balance/payment')
-        self.driver.implicitly_wait(5)
+        self.driver.implicitly_wait(10)
 
         monye_account = self.driver.find_element_by_xpath(
             '/html/body/div[3]/div[1]/div[2]/div/div/div/div[2]/div[1]/div/span').text
@@ -51,14 +51,14 @@ class ClassSpider(object):
             '/html/body/div[3]/div[1]/div[2]/div/div/div/div[2]/div[3]/span').text
 
         self.driver.get(self.base_url + 'app/#/campaigns')
-        self.driver.implicitly_wait(5)
+        self.driver.implicitly_wait(10)
 
         acting = self.driver.find_element_by_xpath(
             '/html/body/div[3]/div[1]/div[2]/div/div/div/div[1]/div[1]/span[1]').text
         inacting = self.driver.find_element_by_xpath(
             '/html/body/div[3]/div[1]/div[2]/div/div/div/div[1]/div[1]/span[2]').text
 
-        with open(self.config.path()['path_file'] + 'report.txt', 'a') as f:
+        with open(self.config.path() + 'report.txt', 'a') as f:
             f.write(
                 '''<strong>{0}</strong><br>\n
                 <span style="color:rgb(50,144,209);font-family:Arial;font-size:28px">{1} RUB</span>/
@@ -76,29 +76,29 @@ class ClassSpider(object):
 
 def test_login():
     """Метод тестирования логина"""
-    c = ClassSpider(account='')
+    c = ClassSpider(account='account_imperiasky')
     c.foo_login()
 
 
 def test_balance():
     """Метод тестирования баланса"""
-    c = ClassSpider(account='')
+    c = ClassSpider(account='account_imperiasky')
     c.foo_login()
     c.foo_balance()
 
 
 def test_account():
     """Метод тестирования функции account"""
-    c = ClassSpider(account='')
+    c = ClassSpider(account='account_imperiasky')
     c.foo_login()
     c.foo_account()
 
 
 def start_bot():
-    config = ClassConfig()
+    config = ClassConfig(account='')
     c = ClassSpider(account='')
     list_accounts = c.foo_account()
-    with open(config.path()['path_file'] + 'report.txt', 'w') as f:
+    with open(config.path() + 'report.txt', 'w') as f:
         pass
     f.close()
     for account in list_accounts:
